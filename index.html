@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+		}
+
+		td {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 10px;
+			width: 250px;
+		}
+
+		.Word {
+			text-align: left;
+			padding: 10px;
+			width: 150px;
+		}
+
+		tr:nth-child(odd) {
+			background-color: #f5f5f5;
+		}
+	</style>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="./assets/styles.css" /> -->
+	<script src="https://unpkg.com/vue@next"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+
+<body>
+	<div id="app">
+		<label for="word" style="font-weight: 600; font-size: 40px;">String Manipulation</label><br>
+		<input v-model="word" v-on:keyup.enter="ManipulateWord()" type="text" id="word" name="word" placeholder="Word...">		
+		<button v-on:click="ManipulateWord()">Show it</button>
+		
+			<ul v-for="(item, index) in games">{{index + 1}}. {{item}}</ul>
+			<table>
+				<tbody>
+					<tr v-for="(item, index) in games"><td>{{index + 1}}</td><td class="Word">{{item}}</td></tr>
+				</tbody>
+			</table>
+	</div>
+
+	<script src="./Main.js"></script> <!-- this src name MUST match the js name and in the file location it is always capitalized so always cap this src -->
+
+	<script>
+		  const mountedApp = app.mount('#app')
+	</script>
+</body>
+
+</html>
