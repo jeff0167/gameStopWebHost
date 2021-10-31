@@ -37,16 +37,44 @@
 
 <body>
 	<div id="app">
-		<label for="word" style="font-weight: 600; font-size: 40px;">String Manipulation</label><br>
-		<input v-model="word" v-on:keyup.enter="ManipulateWord()" type="text" id="word" name="word" placeholder="Word...">		
-		<button v-on:click="ManipulateWord()">Show it</button>
-		
-			<ul v-for="(item, index) in games">{{index + 1}}. {{item}}</ul>
-			<table>
-				<tbody>
-					<tr v-for="(item, index) in games"><td>{{index + 1}}</td><td class="Word">{{item}}</td></tr>
-				</tbody>
-			</table>
+		<label for="word" style="font-weight: 600; font-size: 40px;">Games games games</label><br>
+		<input v-model="currentGameId" @keyup.enter="GetById" type="number" id="GameId" placeholder="Type id...">		
+		<button v-on:click="GetById">Get game by id</button>
+		<br><br><br><br>
+
+		<div v-show="currentGameObject.id > 0">
+		<h1>game by id</h1>
+		<table>
+			<thead><th v-for="(value, name) in currentGameObject">{{name}}</th></thead>
+			<tr><td v-for="i in currentGameObject">{{i}}</td></tr>
+		</table>
+		</div>
+
+		<br><br>
+
+		<p id="Epiq">hello</p>
+
+		<div>
+		<table>
+			<h1>all gamesss</h1>
+			<thead><th v-for="(value, name) in currentGameObject">{{name}}</th></thead>
+			<tr v-for="value in games" id="ListOfGames"><td v-for="i in value">{{i}}</td></tr>
+		</table>
+		</div>
+
+		<br><br>
+		<div>
+		<input v-model="currentGameTitle" @keyup.enter="GetAllByTitle" type="text" id="GameId" placeholder="Type title of game...">		
+		<button v-on:click="GetAllByTitle">Get game by title</button>
+		<br><br>
+		<div v-show="selectedGames.length > 0">
+			<h1>games by title</h1>
+		<table>
+			<thead><th v-for="(value, name) in currentGameObject">{{name}}</th></thead>
+			<tr v-for="value in selectedGames"><td v-for="i in value">{{i}}</td></tr>
+		</table>
+		</div>
+
 	</div>
 
 	<script src="./Main.js"></script> <!-- this src name MUST match the js name and in the file location it is always capitalized so always cap this src -->
