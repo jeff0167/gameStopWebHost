@@ -4,9 +4,12 @@ const app = Vue.createApp({
     data() {
         return {
             games: [],
-            currentGameId: -1,
+            selectedGames: [],
+            currentGameId: "null",
+            currentGameTitle: "",
             currentGameObject: {id: 0, title: "", description: "", releaseYear: 0},
             message: "",
+            
         }
     },
     async created(){
@@ -18,10 +21,19 @@ const app = Vue.createApp({
         },
         async GetById(){
             this.message = "yo";
-            this.Get(currentGameId);
+            this.Get();
         },
+        async GetAllByTitle(){
+            try {
+                const response = await axios.get(baseUrl + "AllTitles/" + this.currentGameTitle)
+                this.selectedGames = await response.data
+            } catch (ex) {
+                alert(ex.message) 
+            }
+        },
+
         async Get(){
-            if(this.currentGameId == -1){
+            if(this.currentGameId == "null"){
                 try {
                     const response = await axios.get(baseUrl)
                     this.games = await response.data
@@ -31,13 +43,12 @@ const app = Vue.createApp({
             }
             else{
                 try {
-                    const response = await axios.get(baseUrl + this.currentId)
+                    const response = await axios.get(baseUrl + this.currentGameId)
                     this.currentGameObject = await response.data
                 } catch (ex) {
                     alert(ex.message) 
                 }
             }
-            currentGameId = -1; // I don't even know what I'm doing to this, but only works when this line is here!
         }
     }
 })
