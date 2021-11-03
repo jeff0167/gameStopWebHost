@@ -66,11 +66,11 @@
 		<input id="GameByTitle_InputField" v-model="currentGameTitle" @keyup.enter="GetAllByTitle" type="text" id="GameId" placeholder="Type title of game...">		
 		<button id="GameByTitle_Button" v-on:click="GetAllByTitle">Get game by title</button>
 		<br><br>
-		<div v-show="selectedGames.length > 0">
+		<div id="ShowAllGames" v-show="selectedGames.length > 0">
 			<h1>games by title</h1>
 		<table>
 			<thead><th v-for="(value, name) in currentGameObject">{{name}}</th></thead>
-			<tr v-for="value in selectedGames"><td v-for="i in value">{{i}}</td></tr>
+			<tr id="GameObjectsByTitle" v-for="value in selectedGames"><td v-for="i in value">{{i}}</td></tr>
 		</table>
 		</div>
 
