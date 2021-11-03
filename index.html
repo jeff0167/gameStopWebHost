@@ -43,7 +43,7 @@
 		<button id="GameByID_Button" v-on:click="GetById">Get game by id</button>
 		<br><br><br><br>
 
-		<div v-show="currentGameObject.id > 0">
+		<div id="ShowSingleGame" v-show="currentGameObject.id > 0">
 		<h1>game by id</h1>
 		<table>
 			<thead><th v-for="(value, name) in currentGameObject">{{name}}</th></thead>
